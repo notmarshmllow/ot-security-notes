@@ -81,6 +81,24 @@ msf6 > search Simens
 searchsploit Simens
 ```
 
+## Hacking Gas Stations
+
+The communication phase of the gas station inventory works on port `10001`/`scp-config` by default. You can use `shodan` to find these devices. You can also look for device specific function code `I20100` and see how many devices are exposed.
+
+Shodan: `I20100` or `Port:10001 I20100`
+
+Use `nmap` scripts with `atg*.nse` in their name and run against the identified IP addresses. This script can provide you with information such as **device specific function code** i.e. `I20100`
+
+```bash
+nmap 10.1.0.11 -p 10001 --script atg-info.nse
+```
+
+You can also use `telnet` to communicate with Tank Gas device on port `10001`. You should now the device specific function code to do this i.e. `I20100` or other based on your pentest scenario. The following command can do this for you:
+
+```bash
+telnet 10.1.0.11 10001
+# After this command is executed, press CTRL + A, followed by device function code after pressing CTRL + A immediately.
+```
 
 
 
