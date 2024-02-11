@@ -87,7 +87,7 @@ The communication phase of the gas station inventory works on port `10001`/`scp-
 
 Shodan: `I20100` or `Port:10001 I20100`
 
-Use `nmap` scripts with `atg*.nse` in their name and run against the identified IP addresses. This script can provide you with information such as **device specific function code** i.e. `I20100`
+Use `nmap` scripts with `atg*.nse` in their name and run against the identified IP addresses. This script can provide you with **tank inventory report**
 
 ```bash
 nmap 10.1.0.11 -p 10001 --script atg-info.nse
@@ -99,6 +99,18 @@ You can also use `telnet` to communicate with Tank Gas device on port `10001`. Y
 telnet 10.1.0.11 10001
 # After this command is executed, press CTRL + A, followed by device function code after pressing CTRL + A immediately.
 ```
+
+Here is a list of all function codes:
+
+```
+I20100 - Tank Inventory Report
+I20200 - Tank Delivery Report
+I20300 - Tank Leak Detect Report
+I20400 - Tank Shift Inventory Report
+I20500 - Tank Status Report
+```
+
+While you are connected to `telnet`, after pressing `CTRL` + `A`, type the above mentioned codes to extract corresponding information.
 
 
 
