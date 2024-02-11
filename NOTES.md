@@ -12,6 +12,7 @@ The following notes are based on scenario that you already have connected yourse
 - Shodan
 - metasploit
 - Google Dorking
+- searchsploit
   
 
 # Let's begin:
@@ -57,6 +58,31 @@ Google Dork: `inurl:/portal/portal.mwsl`
 You may try this and get a gist of what this dorks can provide you with.
 
 Once you identify different portals accessible via the internet, you can try default passowrds to access them.
+
+If you find port `102/tcp` or `502/tcp` open, you can also try default nmap scripts such as `s7-enumerate.nse` or `s7-info.nse` to find more information about the **Simens PLC** devices on the network. This can be achieved using the following command:
+
+```bash
+nmap 10.1.0.11 -Pn -p 102 --script s7-info.nse
+```
+
+You can also use `plcscan` tool to scan the PLC device. Compared to nmap scan, this can provide you with additional information - Serial Number of the Memory Card. It also attempts to check if port `102/tcp` or `502/tcp` is open and extracts information from those ports.
+
+```bash
+python2 plcscan.py 10.1.0.11
+```
+
+You can use `msfconsole` to now find for exploits related to Simens and other devices in the metasploit database. You can also use `searchsploit` to find more exploits.
+
+```bash
+msf6 > search Simens
+```
+
+```bash
+searchsploit Simens
+```
+
+
+
 
 
 
