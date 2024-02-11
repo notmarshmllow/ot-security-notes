@@ -1,8 +1,22 @@
 # Disclaimer:
 
-The following notes are based on scenario that you already have connected yourself to the network of the client/target either compromised it during your pentest activity or the access is granted to the network by your client. 
+The following notes are based on scenario that you already have connected yourself to the network of the client/target either compromised it during your pentest activity or the access is granted to the network by your client.
+
+## Tools used:
+- netdiscover
+- nmap
+- snmp-check
+- plcscan
+- modbus
+- ICSSecurityScripts
+- Shodan
+- metasploit
+- Google Dorking
+  
 
 # Let's begin:
+
+### Network Discovery:
 
 Assuming you are on a  `10.1.0.0/24` network.
 
@@ -31,5 +45,19 @@ Next, we run `snmp-check` tool to gain more information. You will run this when 
 ```sh
 snmp-check 10.1.0.11
 ```
+
+### Open Source Tools for Information Gathering:
+
+We use tools such as `Shodan` and `Google Dorking` to identify hosts connected to the internet and accessible remotely. We later try to compromise them. An example of the queries is available below:
+
+Shodan: `port: 102 Siemens SIMANTIC 6ES7`
+
+Google Dork: `inurl:/portal/portal.mwsl`
+
+You may try this and get a gist of what this dorks can provide you with.
+
+Once you identify different portals accessible via the internet, you can try default passowrds to access them.
+
+
 
 
